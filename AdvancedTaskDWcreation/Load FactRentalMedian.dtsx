@@ -11,8 +11,8 @@
   DTS:LocaleID="5129"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="11"
-  DTS:VersionGUID="{10AF78B0-A26B-4BCD-9AFB-314EF21F4E17}">
+  DTS:VersionBuild="17"
+  DTS:VersionGUID="{E01254BB-6EE3-4EDE-BADC-4117144C0B0B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -59,7 +59,6 @@
       DTS:refId="Package\Load DimTables"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
-      DTS:Disabled="True"
       DTS:DTSID="{e4111406-fc7c-4e90-ac68-f4ed88f1def8}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
@@ -1223,7 +1222,7 @@
                           cachedDataType="i4"
                           cachedName="StateKey"
                           externalMetadataColumnId="Package\Load DimTables\Load Geography\Load DimGeography.Inputs[OLE DB Destination Input].ExternalColumns[StateKey]"
-                          lineageId="Package\Load DimTables\Load Geography\Lookup.Outputs[Lookup Match Output].Columns[StateKey]" />
+                          lineageId="Package\Load DimTables\Load Geography\Lookup StateKey.Outputs[Lookup Match Output].Columns[StateKey]" />
                         <inputColumn
                           refId="Package\Load DimTables\Load Geography\Load DimGeography.Inputs[OLE DB Destination Input].Columns[Suburb]"
                           cachedDataType="wstr"
@@ -1354,11 +1353,11 @@
                   </outputs>
                 </component>
                 <component
-                  refId="Package\Load DimTables\Load Geography\Lookup"
+                  refId="Package\Load DimTables\Load Geography\Lookup StateKey"
                   componentClassID="Microsoft.Lookup"
                   contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
                   description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
-                  name="Lookup"
+                  name="Lookup StateKey"
                   usesDispositions="true"
                   version="6">
                   <properties>
@@ -1422,7 +1421,7 @@ where [refTable].[StateID] = ?</property>
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\Load DimTables\Load Geography\Lookup.Connections[OleDbConnection]"
+                      refId="Package\Load DimTables\Load Geography\Lookup StateKey.Connections[OleDbConnection]"
                       connectionManagerID="Package.ConnectionManagers[AdvancedTaskDW]"
                       connectionManagerRefId="Package.ConnectionManagers[AdvancedTaskDW]"
                       description="Connection manager used to access lookup data."
@@ -1430,11 +1429,11 @@ where [refTable].[StateID] = ?</property>
                   </connections>
                   <inputs>
                     <input
-                      refId="Package\Load DimTables\Load Geography\Lookup.Inputs[Lookup Input]"
+                      refId="Package\Load DimTables\Load Geography\Lookup StateKey.Inputs[Lookup Input]"
                       name="Lookup Input">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\Load DimTables\Load Geography\Lookup.Inputs[Lookup Input].Columns[StateID]"
+                          refId="Package\Load DimTables\Load Geography\Lookup StateKey.Inputs[Lookup Input].Columns[StateID]"
                           cachedDataType="i4"
                           cachedName="StateID"
                           lineageId="Package\Load DimTables\Load Geography\Extract Geography.Outputs[OLE DB Source Output].Columns[StateID]">
@@ -1455,18 +1454,18 @@ where [refTable].[StateID] = ?</property>
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\Load DimTables\Load Geography\Lookup.Outputs[Lookup Match Output]"
+                      refId="Package\Load DimTables\Load Geography\Lookup StateKey.Outputs[Lookup Match Output]"
                       errorOrTruncationOperation="Lookup"
                       errorRowDisposition="FailComponent"
                       exclusionGroup="1"
                       name="Lookup Match Output"
-                      synchronousInputId="Package\Load DimTables\Load Geography\Lookup.Inputs[Lookup Input]">
+                      synchronousInputId="Package\Load DimTables\Load Geography\Lookup StateKey.Inputs[Lookup Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Load DimTables\Load Geography\Lookup.Outputs[Lookup Match Output].Columns[StateKey]"
+                          refId="Package\Load DimTables\Load Geography\Lookup StateKey.Outputs[Lookup Match Output].Columns[StateKey]"
                           dataType="i4"
                           errorOrTruncationOperation="Copy Column"
-                          lineageId="Package\Load DimTables\Load Geography\Lookup.Outputs[Lookup Match Output].Columns[StateKey]"
+                          lineageId="Package\Load DimTables\Load Geography\Lookup StateKey.Outputs[Lookup Match Output].Columns[StateKey]"
                           name="StateKey"
                           truncationRowDisposition="FailComponent">
                           <properties>
@@ -1480,30 +1479,30 @@ where [refTable].[StateID] = ?</property>
                       <externalMetadataColumns />
                     </output>
                     <output
-                      refId="Package\Load DimTables\Load Geography\Lookup.Outputs[Lookup No Match Output]"
+                      refId="Package\Load DimTables\Load Geography\Lookup StateKey.Outputs[Lookup No Match Output]"
                       description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
                       exclusionGroup="1"
                       name="Lookup No Match Output"
-                      synchronousInputId="Package\Load DimTables\Load Geography\Lookup.Inputs[Lookup Input]">
+                      synchronousInputId="Package\Load DimTables\Load Geography\Lookup StateKey.Inputs[Lookup Input]">
                       <externalMetadataColumns />
                     </output>
                     <output
-                      refId="Package\Load DimTables\Load Geography\Lookup.Outputs[Lookup Error Output]"
+                      refId="Package\Load DimTables\Load Geography\Lookup StateKey.Outputs[Lookup Error Output]"
                       exclusionGroup="1"
                       isErrorOut="true"
                       name="Lookup Error Output"
-                      synchronousInputId="Package\Load DimTables\Load Geography\Lookup.Inputs[Lookup Input]">
+                      synchronousInputId="Package\Load DimTables\Load Geography\Lookup StateKey.Inputs[Lookup Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Load DimTables\Load Geography\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          refId="Package\Load DimTables\Load Geography\Lookup StateKey.Outputs[Lookup Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\Load DimTables\Load Geography\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          lineageId="Package\Load DimTables\Load Geography\Lookup StateKey.Outputs[Lookup Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\Load DimTables\Load Geography\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          refId="Package\Load DimTables\Load Geography\Lookup StateKey.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\Load DimTables\Load Geography\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\Load DimTables\Load Geography\Lookup StateKey.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -1946,7 +1945,7 @@ where [refTable].[StateID] = ?</property>
                           cachedDataType="i4"
                           cachedName="StateKey"
                           externalMetadataColumnId="Package\Load DimTables\Load Geography\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[StateKey]"
-                          lineageId="Package\Load DimTables\Load Geography\Lookup.Outputs[Lookup Match Output].Columns[StateKey]">
+                          lineageId="Package\Load DimTables\Load Geography\Lookup StateKey.Outputs[Lookup Match Output].Columns[StateKey]">
                           <properties>
                             <property
                               dataType="System.Int32"
@@ -2077,14 +2076,14 @@ where [refTable].[StateID] = ?</property>
                   startId="Package\Load DimTables\Load Geography\Slowly Changing Dimension.Outputs[Changing Attribute Updates Output]" />
                 <path
                   refId="Package\Load DimTables\Load Geography.Paths[Derived Column Output]"
-                  endId="Package\Load DimTables\Load Geography\Lookup.Inputs[Lookup Input]"
+                  endId="Package\Load DimTables\Load Geography\Lookup StateKey.Inputs[Lookup Input]"
                   name="Derived Column Output"
                   startId="Package\Load DimTables\Load Geography\Set Log Date.Outputs[Derived Column Output]" />
                 <path
                   refId="Package\Load DimTables\Load Geography.Paths[Lookup Match Output]"
                   endId="Package\Load DimTables\Load Geography\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
                   name="Lookup Match Output"
-                  startId="Package\Load DimTables\Load Geography\Lookup.Outputs[Lookup Match Output]" />
+                  startId="Package\Load DimTables\Load Geography\Lookup StateKey.Outputs[Lookup Match Output]" />
                 <path
                   refId="Package\Load DimTables\Load Geography.Paths[New Output]"
                   endId="Package\Load DimTables\Load Geography\Load DimGeography.Inputs[OLE DB Destination Input]"
@@ -3941,11 +3940,11 @@ where [refTable].[StateID] = ?</property>
                   </outputs>
                 </component>
                 <component
-                  refId="Package\Load DimTables\Load School\Insert Destination"
+                  refId="Package\Load DimTables\Load School\Load DimAULocalSchool"
                   componentClassID="Microsoft.OLEDBDestination"
                   contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
                   description="OLE DB Destination"
-                  name="Insert Destination"
+                  name="Load DimAULocalSchool"
                   usesDispositions="true"
                   version="4">
                   <properties>
@@ -3998,7 +3997,7 @@ where [refTable].[StateID] = ?</property>
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\Load DimTables\Load School\Insert Destination.Connections[OleDbConnection]"
+                      refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Connections[OleDbConnection]"
                       connectionManagerID="Package.ConnectionManagers[AdvancedTaskDW]"
                       connectionManagerRefId="Package.ConnectionManagers[AdvancedTaskDW]"
                       description="The OLE DB runtime connection used to access the database."
@@ -4006,193 +4005,193 @@ where [refTable].[StateID] = ?</property>
                   </connections>
                   <inputs>
                     <input
-                      refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input]"
+                      refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input]"
                       errorOrTruncationOperation="Insert"
                       errorRowDisposition="FailComponent"
                       hasSideEffects="true"
                       name="OLE DB Destination Input">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].Columns[SchoolID]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].Columns[SchoolID]"
                           cachedDataType="i4"
                           cachedName="SchoolID"
-                          externalMetadataColumnId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SchoolID]"
+                          externalMetadataColumnId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[SchoolID]"
                           lineageId="Package\Load DimTables\Load School\Extract School.Outputs[OLE DB Source Output].Columns[SchoolID]" />
                         <inputColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].Columns[StateKey]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].Columns[StateKey]"
                           cachedDataType="i4"
                           cachedName="StateKey"
-                          externalMetadataColumnId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[StateKey]"
+                          externalMetadataColumnId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[StateKey]"
                           lineageId="Package\Load DimTables\Load School\Lookup StateKey.Outputs[Lookup Match Output].Columns[StateKey]" />
                         <inputColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].Columns[CityID]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].Columns[CityID]"
                           cachedDataType="i4"
                           cachedName="CityID"
-                          externalMetadataColumnId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CityID]"
+                          externalMetadataColumnId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[CityID]"
                           lineageId="Package\Load DimTables\Load School\Extract School.Outputs[OLE DB Source Output].Columns[CityID]" />
                         <inputColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].Columns[SchoolName]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].Columns[SchoolName]"
                           cachedDataType="wstr"
                           cachedLength="100"
                           cachedName="SchoolName"
-                          externalMetadataColumnId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SchoolName]"
+                          externalMetadataColumnId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[SchoolName]"
                           lineageId="Package\Load DimTables\Load School\Extract School.Outputs[OLE DB Source Output].Columns[SchoolName]" />
                         <inputColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].Columns[SchoolAddress]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].Columns[SchoolAddress]"
                           cachedDataType="wstr"
                           cachedLength="100"
                           cachedName="SchoolAddress"
-                          externalMetadataColumnId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SchoolAddress]"
+                          externalMetadataColumnId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[SchoolAddress]"
                           lineageId="Package\Load DimTables\Load School\Extract School.Outputs[OLE DB Source Output].Columns[SchoolAddress]" />
                         <inputColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].Columns[SubtypeName]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].Columns[SubtypeName]"
                           cachedDataType="wstr"
                           cachedLength="50"
                           cachedName="SubtypeName"
-                          externalMetadataColumnId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SubtypeName]"
+                          externalMetadataColumnId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[SubtypeName]"
                           lineageId="Package\Load DimTables\Load School\Extract School.Outputs[OLE DB Source Output].Columns[SubtypeName]" />
                         <inputColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].Columns[DepartmentName]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].Columns[DepartmentName]"
                           cachedDataType="wstr"
                           cachedLength="10"
                           cachedName="DepartmentName"
-                          externalMetadataColumnId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[DepartmentName]"
+                          externalMetadataColumnId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[DepartmentName]"
                           lineageId="Package\Load DimTables\Load School\Extract School.Outputs[OLE DB Source Output].Columns[DepartmentName]" />
                         <inputColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].Columns[Sector]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].Columns[Sector]"
                           cachedDataType="wstr"
                           cachedLength="20"
                           cachedName="Sector"
-                          externalMetadataColumnId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sector]"
+                          externalMetadataColumnId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[Sector]"
                           lineageId="Package\Load DimTables\Load School\Extract School.Outputs[OLE DB Source Output].Columns[Sector]" />
                         <inputColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].Columns[Phone]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].Columns[Phone]"
                           cachedDataType="wstr"
                           cachedLength="20"
                           cachedName="Phone"
-                          externalMetadataColumnId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
+                          externalMetadataColumnId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
                           lineageId="Package\Load DimTables\Load School\Extract School.Outputs[OLE DB Source Output].Columns[Phone]" />
                         <inputColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].Columns[LGA]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].Columns[LGA]"
                           cachedDataType="wstr"
                           cachedLength="40"
                           cachedName="LGA"
-                          externalMetadataColumnId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[LGA]"
+                          externalMetadataColumnId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[LGA]"
                           lineageId="Package\Load DimTables\Load School\Extract School.Outputs[OLE DB Source Output].Columns[LGA]" />
                         <inputColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].Columns[Suburb]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].Columns[Suburb]"
                           cachedDataType="wstr"
                           cachedLength="40"
                           cachedName="Suburb"
-                          externalMetadataColumnId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Suburb]"
+                          externalMetadataColumnId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[Suburb]"
                           lineageId="Package\Load DimTables\Load School\Extract School.Outputs[OLE DB Source Output].Columns[Suburb]" />
                         <inputColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].Columns[Postcode]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].Columns[Postcode]"
                           cachedDataType="i4"
                           cachedName="Postcode"
-                          externalMetadataColumnId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[PostCode]"
+                          externalMetadataColumnId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[PostCode]"
                           lineageId="Package\Load DimTables\Load School\Extract School.Outputs[OLE DB Source Output].Columns[Postcode]" />
                         <inputColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].Columns[Lattitude]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].Columns[Lattitude]"
                           cachedDataType="r8"
                           cachedName="Lattitude"
-                          externalMetadataColumnId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Lattitude]"
+                          externalMetadataColumnId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[Lattitude]"
                           lineageId="Package\Load DimTables\Load School\Extract School.Outputs[OLE DB Source Output].Columns[Lattitude]" />
                         <inputColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].Columns[Longitude]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].Columns[Longitude]"
                           cachedDataType="r8"
                           cachedName="Longitude"
-                          externalMetadataColumnId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Longitude]"
+                          externalMetadataColumnId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[Longitude]"
                           lineageId="Package\Load DimTables\Load School\Extract School.Outputs[OLE DB Source Output].Columns[Longitude]" />
                         <inputColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].Columns[dss_Created_Time]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].Columns[dss_Created_Time]"
                           cachedDataType="dbTimeStamp"
                           cachedName="dss_Created_Time"
-                          externalMetadataColumnId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[dss_Created_Time]"
+                          externalMetadataColumnId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[dss_Created_Time]"
                           lineageId="Package\Load DimTables\Load School\Set Log Date.Outputs[Derived Column Output].Columns[dss_Created_Time]" />
                         <inputColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].Columns[dss_Updated_Time]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].Columns[dss_Updated_Time]"
                           cachedDataType="dbTimeStamp"
                           cachedName="dss_Updated_Time"
-                          externalMetadataColumnId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[dss_Updated_Time]"
+                          externalMetadataColumnId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[dss_Updated_Time]"
                           lineageId="Package\Load DimTables\Load School\Set Log Date.Outputs[Derived Column Output].Columns[dss_Updated_Time]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SchoolKey]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[SchoolKey]"
                           dataType="i4"
                           name="SchoolKey" />
                         <externalMetadataColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SchoolID]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[SchoolID]"
                           dataType="i4"
                           name="SchoolID" />
                         <externalMetadataColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[StateKey]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[StateKey]"
                           dataType="i4"
                           name="StateKey" />
                         <externalMetadataColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CityID]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[CityID]"
                           dataType="i4"
                           name="CityID" />
                         <externalMetadataColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SchoolName]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[SchoolName]"
                           dataType="wstr"
                           length="100"
                           name="SchoolName" />
                         <externalMetadataColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SchoolAddress]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[SchoolAddress]"
                           dataType="wstr"
                           length="100"
                           name="SchoolAddress" />
                         <externalMetadataColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SubtypeName]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[SubtypeName]"
                           dataType="wstr"
                           length="50"
                           name="SubtypeName" />
                         <externalMetadataColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[DepartmentName]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[DepartmentName]"
                           dataType="wstr"
                           length="50"
                           name="DepartmentName" />
                         <externalMetadataColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sector]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[Sector]"
                           dataType="wstr"
                           length="20"
                           name="Sector" />
                         <externalMetadataColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
                           dataType="wstr"
                           length="20"
                           name="Phone" />
                         <externalMetadataColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[LGA]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[LGA]"
                           dataType="wstr"
                           length="40"
                           name="LGA" />
                         <externalMetadataColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Suburb]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[Suburb]"
                           dataType="wstr"
                           length="40"
                           name="Suburb" />
                         <externalMetadataColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[PostCode]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[PostCode]"
                           dataType="i4"
                           name="PostCode" />
                         <externalMetadataColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Lattitude]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[Lattitude]"
                           dataType="r8"
                           name="Lattitude" />
                         <externalMetadataColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Longitude]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[Longitude]"
                           dataType="r8"
                           name="Longitude" />
                         <externalMetadataColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[dss_Created_Time]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[dss_Created_Time]"
                           dataType="dbTimeStamp"
                           name="dss_Created_Time" />
                         <externalMetadataColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[dss_Updated_Time]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input].ExternalColumns[dss_Updated_Time]"
                           dataType="dbTimeStamp"
                           name="dss_Updated_Time" />
                       </externalMetadataColumns>
@@ -4200,22 +4199,22 @@ where [refTable].[StateID] = ?</property>
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\Load DimTables\Load School\Insert Destination.Outputs[OLE DB Destination Error Output]"
+                      refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Outputs[OLE DB Destination Error Output]"
                       exclusionGroup="1"
                       isErrorOut="true"
                       name="OLE DB Destination Error Output"
-                      synchronousInputId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input]">
+                      synchronousInputId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\Load DimTables\Load School\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          lineageId="Package\Load DimTables\Load School\Load DimAULocalSchool.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\Load DimTables\Load School\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          refId="Package\Load DimTables\Load School\Load DimAULocalSchool.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\Load DimTables\Load School\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\Load DimTables\Load School\Load DimAULocalSchool.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -5107,7 +5106,7 @@ where [refTable].[StateID] = ?</property>
                   startId="Package\Load DimTables\Load School\Lookup StateKey.Outputs[Lookup Match Output]" />
                 <path
                   refId="Package\Load DimTables\Load School.Paths[New Output]"
-                  endId="Package\Load DimTables\Load School\Insert Destination.Inputs[OLE DB Destination Input]"
+                  endId="Package\Load DimTables\Load School\Load DimAULocalSchool.Inputs[OLE DB Destination Input]"
                   name="New Output"
                   startId="Package\Load DimTables\Load School\Slowly Changing Dimension.Outputs[New Output]" />
                 <path
@@ -7549,7 +7548,7 @@ where [refTable].[StateID] = ?</property>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{2D7AAD28-6619-4F4A-8378-77BAAB9FF6F6}"
               SQLTask:BypassPrepare="False"
-              SQLTask:SqlStatementSource="truncate table [dbo].[stg_RentalMedian]&#xA;&#xA;&#xA;truncate table [dbo].[stgFactRentalMedian]&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="truncate table [dbo].[stg_RentalMedian]&#xA;&#xA;&#xA;truncate table [dbo].[stgFactRentalMedian]&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -8934,22 +8933,22 @@ where [refTable].[SchoolID] = ?</property>
         <NodeLayout
           Size="243,42"
           Id="Package\Load FactRentalMedian\Clean Rental Median Staging Table"
-          TopLeft="291,4" />
+          TopLeft="211,16" />
         <NodeLayout
           Size="264,42"
           Id="Package\Load FactRentalMedian\Extract RentalMedian into staging table"
-          TopLeft="288,72" />
+          TopLeft="208,84" />
         <NodeLayout
           Size="198,42"
           Id="Package\Load FactRentalMedian\Transform Rental Median"
-          TopLeft="322,145" />
+          TopLeft="242,157" />
         <NodeLayout
           Size="217,42"
           Id="Package\Load FactRentalMedian\Upsert into FactRentalMedian"
-          TopLeft="317,230" />
+          TopLeft="235,241" />
         <EdgeLayout
           Id="Package\Load FactRentalMedian.PrecedenceConstraints[Constraint]"
-          TopLeft="416.25,46">
+          TopLeft="336.25,58">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -8971,7 +8970,7 @@ where [refTable].[SchoolID] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load FactRentalMedian.PrecedenceConstraints[Constraint 1]"
-          TopLeft="420.5,114">
+          TopLeft="340.5,126">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -8993,18 +8992,18 @@ where [refTable].[SchoolID] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load FactRentalMedian.PrecedenceConstraints[Constraint 2]"
-          TopLeft="423.25,187">
+          TopLeft="342.25,199">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,43"
+              EndConnector="0,42"
               Start="0,0"
-              End="0,35.5">
+              End="0,34.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,35.5" />
+                    End="0,34.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9016,24 +9015,24 @@ where [refTable].[SchoolID] = ?</property>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="792,327"
-          Size="792,370"
+          PanelSize="711,297"
+          Size="711,340"
           Id="Package\Load FactRentalMedian"
-          TopLeft="336,439" />
+          TopLeft="382,405" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="735.5,332">
+          TopLeft="738.25,332">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,107"
+              EndConnector="0,73"
               Start="0,0"
-              End="0,99.5">
+              End="0,65.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,99.5" />
+                    End="0,65.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9051,25 +9050,25 @@ where [refTable].[SchoolID] = ?</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="209,42"
-          Id="Package\Load DimTables\Load CrimeCategory\Slowly Changing Dimension"
-          TopLeft="207.5,209.5" />
-        <NodeLayout
           Size="166,42"
           Id="Package\Load DimTables\Load CrimeCategory\OLE DB Command"
           TopLeft="492,321.5" />
+        <NodeLayout
+          Size="202,42"
+          Id="Package\Load DimTables\Load CrimeCategory\Extract Offecnce Category"
+          TopLeft="211,5.5" />
         <NodeLayout
           Size="178,42"
           Id="Package\Load DimTables\Load CrimeCategory\Load Crime Category"
           TopLeft="5.50000000000006,311.5" />
         <NodeLayout
+          Size="209,42"
+          Id="Package\Load DimTables\Load CrimeCategory\Slowly Changing Dimension"
+          TopLeft="207.5,209.5" />
+        <NodeLayout
           Size="154,42"
           Id="Package\Load DimTables\Load CrimeCategory\Derived Column"
           TopLeft="235,107.5" />
-        <NodeLayout
-          Size="202,42"
-          Id="Package\Load DimTables\Load CrimeCategory\Extract Offecnce Category"
-          TopLeft="211,5.5" />
         <EdgeLayout
           Id="Package\Load DimTables\Load CrimeCategory.Paths[OLE DB Source Output]"
           TopLeft="312,47.5">
@@ -9199,9 +9198,9 @@ where [refTable].[SchoolID] = ?</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="113,42"
-          Id="Package\Load DimTables\Load Geography\Lookup"
-          TopLeft="255.5,209.5" />
+          Size="158,42"
+          Id="Package\Load DimTables\Load Geography\Lookup StateKey"
+          TopLeft="234.5,210.5" />
         <NodeLayout
           Size="140,42"
           Id="Package\Load DimTables\Load Geography\Set Log Date"
@@ -9241,9 +9240,7 @@ where [refTable].[SchoolID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -9284,50 +9281,48 @@ where [refTable].[SchoolID] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load DimTables\Load Geography.Paths[Lookup Match Output]"
-          TopLeft="312,251.5">
+          TopLeft="312.75,252.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60"
+              EndConnector="0,59"
               Start="0,0"
-              End="0,52.5">
+              End="0,51.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.5" />
+                    End="0,51.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,20.4453125,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,19.9453125,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load DimTables\Load Geography.Paths[Derived Column Output]"
-          TopLeft="312,149.5">
+          TopLeft="312.75,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60"
+              EndConnector="0,61"
               Start="0,0"
-              End="0,52.5">
+              End="0,53.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.5" />
+                    End="0,53.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -9379,10 +9374,6 @@ where [refTable].[SchoolID] = ?</property>
           Id="Package\Load DimTables\Load PropertyType\OLE DB Command"
           TopLeft="454,315.5" />
         <NodeLayout
-          Size="140,42"
-          Id="Package\Load DimTables\Load PropertyType\Set Log Date"
-          TopLeft="248,107.5" />
-        <NodeLayout
           Size="209,42"
           Id="Package\Load DimTables\Load PropertyType\Slowly Changing Dimension"
           TopLeft="213.5,209.5" />
@@ -9394,6 +9385,10 @@ where [refTable].[SchoolID] = ?</property>
           Size="175,42"
           Id="Package\Load DimTables\Load PropertyType\Export PropertyType"
           TopLeft="230.5,5.5" />
+        <NodeLayout
+          Size="140,42"
+          Id="Package\Load DimTables\Load PropertyType\Set Log Date"
+          TopLeft="248,107.5" />
         <EdgeLayout
           Id="Package\Load DimTables\Load PropertyType.Paths[OLE DB Source Output]"
           TopLeft="318,47.5">
@@ -9527,10 +9522,6 @@ where [refTable].[SchoolID] = ?</property>
           Id="Package\Load DimTables\Load Rental Type\OLE DB Command"
           TopLeft="229,311.5" />
         <NodeLayout
-          Size="136,42"
-          Id="Package\Load DimTables\Load Rental Type\Set LogDate"
-          TopLeft="244,107.5" />
-        <NodeLayout
           Size="209,42"
           Id="Package\Load DimTables\Load Rental Type\Slowly Changing Dimension"
           TopLeft="207.5,209.5" />
@@ -9542,6 +9533,10 @@ where [refTable].[SchoolID] = ?</property>
           Size="166,42"
           Id="Package\Load DimTables\Load Rental Type\Export RentalType"
           TopLeft="229,5.5" />
+        <NodeLayout
+          Size="136,42"
+          Id="Package\Load DimTables\Load Rental Type\Set LogDate"
+          TopLeft="244,107.5" />
         <EdgeLayout
           Id="Package\Load DimTables\Load Rental Type.Paths[OLE DB Source Output]"
           TopLeft="312,47.5">
@@ -9673,14 +9668,14 @@ where [refTable].[SchoolID] = ?</property>
         <NodeLayout
           Size="166,42"
           Id="Package\Load DimTables\Load School\OLE DB Command"
-          TopLeft="523,410.5" />
+          TopLeft="506,411.5" />
         <NodeLayout
           Size="209,42"
           Id="Package\Load DimTables\Load School\Slowly Changing Dimension"
           TopLeft="207.5,311.5" />
         <NodeLayout
-          Size="163,42"
-          Id="Package\Load DimTables\Load School\Insert Destination"
+          Size="192,42"
+          Id="Package\Load DimTables\Load School\Load DimAULocalSchool"
           TopLeft="5.50000000000006,413.5" />
         <NodeLayout
           Size="158,42"
@@ -9713,9 +9708,7 @@ where [refTable].[SchoolID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -9724,9 +9717,9 @@ where [refTable].[SchoolID] = ?</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-191.5,60"
+              EndConnector="-177,60"
               Start="0,0"
-              End="-191.5,52.5">
+              End="-177,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -9737,20 +9730,20 @@ where [refTable].[SchoolID] = ?</property>
                     Point2="0,24.2735042735043"
                     Point3="-4,24.2735042735043" />
                   <mssgle:LineSegment
-                    End="-187.5,24.2735042735043" />
+                    End="-173,24.2735042735043" />
                   <mssgle:CubicBezierSegment
-                    Point1="-187.5,24.2735042735043"
-                    Point2="-191.5,24.2735042735043"
-                    Point3="-191.5,28.2735042735043" />
+                    Point1="-173,24.2735042735043"
+                    Point2="-177,24.2735042735043"
+                    Point3="-177,28.2735042735043" />
                   <mssgle:LineSegment
-                    End="-191.5,52.5" />
+                    End="-177,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-122.84138671875,29.2735042735043,54.1827734375,11.43359375"
+              BoundingBox="-115.59138671875,29.2735042735043,54.1827734375,11.43359375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -9797,9 +9790,7 @@ where [refTable].[SchoolID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -9808,33 +9799,33 @@ where [refTable].[SchoolID] = ?</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="260.5,57"
+              EndConnector="243.5,58"
               Start="0,0"
-              End="260.5,49.5">
+              End="243.5,50.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,19.0598290598291" />
+                    End="0,19.4643874643875" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,19.0598290598291"
-                    Point2="0,23.0598290598291"
-                    Point3="4,23.0598290598291" />
+                    Point1="0,19.4643874643875"
+                    Point2="0,23.4643874643875"
+                    Point3="4,23.4643874643875" />
                   <mssgle:LineSegment
-                    End="256.5,23.0598290598291" />
+                    End="239.5,23.4643874643875" />
                   <mssgle:CubicBezierSegment
-                    Point1="256.5,23.0598290598291"
-                    Point2="260.5,23.0598290598291"
-                    Point3="260.5,27.0598290598291" />
+                    Point1="239.5,23.4643874643875"
+                    Point2="243.5,23.4643874643875"
+                    Point3="243.5,27.4643874643875" />
                   <mssgle:LineSegment
-                    End="260.5,49.5" />
+                    End="243.5,50.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="51.7160937499999,28.0598290598291,157.0678125,11.6630859375"
+              BoundingBox="43.21609375,28.4643874643875,157.0678125,11.6630859375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -9847,13 +9838,13 @@ where [refTable].[SchoolID] = ?</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="166,42"
-          Id="Package\Load DimTables\Load State\OLE DB Command"
-          TopLeft="446,320.5" />
-        <NodeLayout
           Size="163,42"
           Id="Package\Load DimTables\Load State\Insert Destination"
           TopLeft="5.50000000000006,311.5" />
+        <NodeLayout
+          Size="140,42"
+          Id="Package\Load DimTables\Load State\Set Log Date"
+          TopLeft="242,107.5" />
         <NodeLayout
           Size="209,42"
           Id="Package\Load DimTables\Load State\Slowly Changing Dimension"
@@ -9863,9 +9854,9 @@ where [refTable].[SchoolID] = ?</property>
           Id="Package\Load DimTables\Load State\Extract State"
           TopLeft="242.5,5.49999999999989" />
         <NodeLayout
-          Size="140,42"
-          Id="Package\Load DimTables\Load State\Set Log Date"
-          TopLeft="242,107.5" />
+          Size="166,42"
+          Id="Package\Load DimTables\Load State\OLE DB Command"
+          TopLeft="446,320.5" />
         <EdgeLayout
           Id="Package\Load DimTables\Load State.Paths[OLE DB Source Output]"
           TopLeft="312,47.4999999999999">

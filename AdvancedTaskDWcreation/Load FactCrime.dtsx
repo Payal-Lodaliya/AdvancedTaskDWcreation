@@ -11,8 +11,8 @@
   DTS:LocaleID="5129"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="6"
-  DTS:VersionGUID="{04CC77BB-2872-4934-9B74-3010C9A475F4}">
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{42DC76F8-9D10-4725-B33F-90D9CAB76E63}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -59,7 +59,6 @@
       DTS:refId="Package\Load DimTables"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
-      DTS:Disabled="True"
       DTS:DTSID="{e8826237-82f2-437c-bfdc-b521602020ac}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
@@ -8865,21 +8864,29 @@ where [refTable].[CityID] = ?</property>
         <NodeLayout
           Size="255,42"
           Id="Package\Load Fact Crime\Extract Crime data in to satging table"
-          TopLeft="146,100" />
+          TopLeft="146,90" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Load Fact Crime\Transform Crime data"
+          TopLeft="186,176" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Load Fact Crime\Upsert into FactCrime"
+          TopLeft="190,260" />
         <EdgeLayout
           Id="Package\Load Fact Crime.PrecedenceConstraints[Constraint]"
           TopLeft="275,54">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,46"
+              EndConnector="0,36"
               Start="0,0"
-              End="0,38.5">
+              End="0,28.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,38.5" />
+                    End="0,28.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -8888,24 +8895,20 @@ where [refTable].[CityID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="182,42"
-          Id="Package\Load Fact Crime\Transform Crime data"
-          TopLeft="186,187" />
         <EdgeLayout
           Id="Package\Load Fact Crime.PrecedenceConstraints[Constraint 1]"
-          TopLeft="275.25,142">
+          TopLeft="275.25,132">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,45"
+              EndConnector="0,44"
               Start="0,0"
-              End="0,37.5">
+              End="0,36.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,37.5" />
+                    End="0,36.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -8914,24 +8917,20 @@ where [refTable].[CityID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="181,42"
-          Id="Package\Load Fact Crime\Upsert into FactCrime"
-          TopLeft="190,270" />
         <EdgeLayout
           Id="Package\Load Fact Crime.PrecedenceConstraints[Constraint 2]"
-          TopLeft="278.75,229">
+          TopLeft="278.75,218">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,41"
+              EndConnector="0,42"
               Start="0,0"
-              End="0,33.5">
+              End="0,34.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,33.5" />
+                    End="0,34.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -8943,24 +8942,24 @@ where [refTable].[CityID] = ?</property>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="532,371"
-          Size="532,414"
+          PanelSize="532,330"
+          Size="532,373"
           Id="Package\Load Fact Crime"
-          TopLeft="449,399" />
+          TopLeft="452,360" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="714,327">
+          TopLeft="715.5,327">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,72"
+              EndConnector="0,33"
               Start="0,0"
-              End="0,64.5">
+              End="0,25.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,64.5" />
+                    End="0,25.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -10291,6 +10290,29 @@ where [refTable].[CityID] = ?</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
+    design-time-name="Package\Load Fact Crime\Transform Crime data\Lookup GeographyKey">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimGeography]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\Load Fact Crime\Transform Crime data\Extract Stg_Crime table">
     <Properties>
       <Property>
@@ -10309,7 +10331,7 @@ where [refTable].[CityID] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -10319,30 +10341,7 @@ where [refTable].[CityID] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Fact Crime\Transform Crime data\Lookup GeographyKey">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DimGeography]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>

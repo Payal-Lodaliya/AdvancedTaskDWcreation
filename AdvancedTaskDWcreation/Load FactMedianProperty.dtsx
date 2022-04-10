@@ -11,8 +11,8 @@
   DTS:LocaleID="5129"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="26"
-  DTS:VersionGUID="{FC74A0A1-C01B-417A-B277-169C859C96EF}">
+  DTS:VersionBuild="28"
+  DTS:VersionGUID="{FDEE91D4-5147-4786-9CAF-9D74712352D7}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -59,7 +59,6 @@
       DTS:refId="Package\Load DimTables"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
-      DTS:Disabled="True"
       DTS:DTSID="{9cdd6e21-91a2-45c0-bc77-eb41bf5361ce}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
@@ -9092,16 +9091,24 @@ where [refTable].[SchoolID] = ?</property>
           Id="Package\Load DimTables"
           TopLeft="74,24" />
         <NodeLayout
-          Size="247,42"
-          Id="Package\Load FactMedinProperty\Extract PropertyMedian into staging"
-          TopLeft="478,87" />
-        <NodeLayout
           Size="250,42"
           Id="Package\Load FactMedinProperty\Clean PropertyMedian stsaging table"
-          TopLeft="474,8.5" />
+          TopLeft="293,16.5" />
+        <NodeLayout
+          Size="247,42"
+          Id="Package\Load FactMedinProperty\Extract PropertyMedian into staging"
+          TopLeft="297,95" />
+        <NodeLayout
+          Size="204,42"
+          Id="Package\Load FactMedinProperty\Transform PropertyMedian"
+          TopLeft="323,167" />
+        <NodeLayout
+          Size="256,42"
+          Id="Package\Load FactMedinProperty\Upsert  and Load FactPropertyMedian"
+          TopLeft="298,243" />
         <EdgeLayout
           Id="Package\Load FactMedinProperty.PrecedenceConstraints[Constraint]"
-          TopLeft="600.25,50.5">
+          TopLeft="419.25,58.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -9121,24 +9128,20 @@ where [refTable].[SchoolID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="204,42"
-          Id="Package\Load FactMedinProperty\Transform PropertyMedian"
-          TopLeft="502,176" />
         <EdgeLayout
           Id="Package\Load FactMedinProperty.PrecedenceConstraints[Constraint 1]"
-          TopLeft="602.75,129">
+          TopLeft="422.75,137">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,47"
+              EndConnector="0,30"
               Start="0,0"
-              End="0,39.5">
+              End="0,22.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,39.5" />
+                    End="0,22.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9147,24 +9150,20 @@ where [refTable].[SchoolID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="256,42"
-          Id="Package\Load FactMedinProperty\Upsert  and Load FactPropertyMedian"
-          TopLeft="475,281" />
         <EdgeLayout
           Id="Package\Load FactMedinProperty.PrecedenceConstraints[Constraint 2]"
-          TopLeft="603.5,218">
+          TopLeft="425.5,209">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,63"
+              EndConnector="0,34"
               Start="0,0"
-              End="0,55.5">
+              End="0,26.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,55.5" />
+                    End="0,26.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9176,24 +9175,24 @@ where [refTable].[SchoolID] = ?</property>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="1170,436"
-          Size="1170,479"
+          PanelSize="850,313"
+          Size="850,356"
           Id="Package\Load FactMedinProperty"
-          TopLeft="102,426" />
+          TopLeft="264,376" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="686,328">
+          TopLeft="687,328">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,98"
+              EndConnector="0,48"
               Start="0,0"
-              End="0,90.5">
+              End="0,40.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,90.5" />
+                    End="0,40.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -10415,6 +10414,32 @@ where [refTable].[SchoolID] = ?</property>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load FactMedinProperty\Extract PropertyMedian into staging\Extract PropertyMedian">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load FactMedinProperty\Extract PropertyMedian into staging\Load PropertyMedian amount into staging table">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\Load FactMedinProperty\Transform PropertyMedian">
     <LayoutInfo>
@@ -10538,7 +10563,7 @@ where [refTable].[SchoolID] = ?</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Load FactMedinProperty\Transform PropertyMedian\Extract Staging PropertyMedian">
+    design-time-name="Package\Load FactMedinProperty\Transform PropertyMedian\Load stg_FactPropertyMedian">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -10556,7 +10581,7 @@ where [refTable].[SchoolID] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -10566,7 +10591,7 @@ where [refTable].[SchoolID] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -10579,7 +10604,7 @@ where [refTable].[SchoolID] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -10589,10 +10614,23 @@ where [refTable].[SchoolID] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load FactMedinProperty\Transform PropertyMedian\Extract Staging PropertyMedian">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
@@ -10602,7 +10640,7 @@ where [refTable].[SchoolID] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -10612,49 +10650,10 @@ where [refTable].[SchoolID] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load FactMedinProperty\Transform PropertyMedian\Load stg_FactPropertyMedian">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load FactMedinProperty\Extract PropertyMedian into staging\Extract PropertyMedian">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load FactMedinProperty\Extract PropertyMedian into staging\Load PropertyMedian amount into staging table">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
